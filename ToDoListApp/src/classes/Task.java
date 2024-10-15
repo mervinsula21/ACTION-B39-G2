@@ -10,12 +10,16 @@ public class Task {
     private String description;
     private String deadline;
     private boolean isCompleted;
-    public Task(String description, String deadline) {
+    private String priority;
+    
+    public Task(String description, String deadline, String priority) {
         this.id = idCounter++;
         this.description = description;
         this.deadline = deadline;
         this.isCompleted = false;
+        this.priority = priority;
     }
+    
     public int getId() {
         return id;
     }
@@ -28,7 +32,15 @@ public class Task {
     public boolean isCompleted() {
         return isCompleted;
     }
+<<<<<<< HEAD
     //Updated method to include logging
+=======
+    
+    public String getPriority() {
+    	return priority;
+    }
+    
+>>>>>>> b4142642c1f49450c647f18b2b4569b66b91a748
     public void markAsCompleted() {
         this.isCompleted = true;
         System.out.println("Task ID " + id + " marked as completed."); //Log completion
