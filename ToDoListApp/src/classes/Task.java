@@ -8,14 +8,14 @@ public class Task {
     private static int idCounter = 1;
     private int id;
     private String description;
-    private String deadline;
+    private LocalDate deadline;
     private boolean isCompleted;
     private String priority;
     
     public Task(String description, String deadline, String priority) {
         this.id = idCounter++;
         this.description = description;
-        this.deadline = deadline;
+        setDeadline(deadline);
         this.isCompleted = false;
         this.priority = priority;
     }
@@ -26,21 +26,30 @@ public class Task {
     public String getDescription() {
         return description;
     }
-    public String getDeadline() {
+    public LocalDate getDeadline() {
         return deadline;
     }
     public boolean isCompleted() {
         return isCompleted;
     }
-<<<<<<< HEAD
-    //Updated method to include logging
-=======
+    
+    
+    // Method to set the deadline with validation
+    public void setDeadline(String deadline) {
+	    try {
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+				this.deadline = LocalDate.parse(deadline, formatter);
+			} catch (DateTimeParseException e) {
+				System.out.println("Invalid date format. Please use 'yyyy-MM-dd'.");
+			this.deadline = null; // or set to a default date if necessary
+			}
+	    }
     
     public String getPriority() {
     	return priority;
     }
     
->>>>>>> b4142642c1f49450c647f18b2b4569b66b91a748
+    //Updated method to include logging
     public void markAsCompleted() {
         this.isCompleted = true;
         System.out.println("Task ID " + id + " marked as completed."); //Log completion
